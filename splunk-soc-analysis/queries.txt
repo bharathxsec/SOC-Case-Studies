@@ -1,25 +1,17 @@
-# SPL Queries Used During Analysis
-
-These are the main queries I used while investigating DNS and HTTP logs in Splunk. Each query helped answer a specific question during the analysis.
+# 🔴 SPL Queries Used for Analysis
 
 ---
 
-## 1. DNS Analysis
+## 🟢 1. DNS Analysis
 
-### Find which IP is most active
-
-I started by checking which IP is generating the most DNS traffic.
+### Find top DNS activity
 
 ```
 | stats count by src_ip
 | sort -count
 ```
 
----
-
-### Check NXDOMAIN (failed DNS requests)
-
-To identify suspicious behavior, I filtered DNS failures.
+### Find NXDOMAIN responses
 
 ```
 | search response="NXDOMAIN"
@@ -27,11 +19,7 @@ To identify suspicious behavior, I filtered DNS failures.
 | sort -count
 ```
 
----
-
-### Identify frequently queried domains
-
-This helped in spotting repeated or random domains.
+### Find repeated domains
 
 ```
 | stats count by domain
@@ -40,21 +28,15 @@ This helped in spotting repeated or random domains.
 
 ---
 
-## 2. SQL Injection Detection
+## 🟢 2. SQL Injection Detection
 
-### Detect SQL injection patterns in URLs
-
-I searched for common SQL injection patterns in HTTP requests.
+### Detect SQL injection patterns
 
 ```
 | where like(uri,"%OR%1=1%")
 ```
 
----
-
-### Find which IP is performing the attack
-
-After detecting the pattern, I grouped results by IP.
+### Identify attacker IP
 
 ```
 | where like(uri,"%OR%1=1%")
@@ -62,11 +44,7 @@ After detecting the pattern, I grouped results by IP.
 | sort -count
 ```
 
----
-
-### View most accessed URLs
-
-This helps in identifying targeted endpoints.
+### View suspicious URLs
 
 ```
 | stats count by uri
@@ -75,11 +53,9 @@ This helps in identifying targeted endpoints.
 
 ---
 
-## 3. File Upload Detection
+## 🟢 3. File Upload Detection
 
-### Detect file upload activity
-
-I filtered POST requests to upload endpoints.
+### Detect upload activity
 
 ```
 | search uri="/upload.php" method="POST"
@@ -88,11 +64,9 @@ I filtered POST requests to upload endpoints.
 
 ---
 
-## 4. Webshell Detection
+## 🟢 4. Webshell Detection
 
-### Detect access to suspicious files
-
-I checked for repeated access to uploaded files.
+### Detect webshell access
 
 ```
 | search uri="/uploads/shell.php"
@@ -101,11 +75,9 @@ I checked for repeated access to uploaded files.
 
 ---
 
-## 5. Correlation (Attack Chain)
+## 🟢 5. Correlation (Attack Chain)
 
-### Combine activity to understand behavior
-
-This helped in linking multiple actions (attack → upload → execution) from the same IP.
+### Combine activity
 
 ```
 | stats count by src_ip, uri, method
