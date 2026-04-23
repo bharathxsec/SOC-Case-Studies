@@ -6,7 +6,7 @@
 * DNS anomaly detection
 * SQL Injection detection
 * Webshell detection
-  📁 Folder: `/splunk-soc-analysis`
+  📁 Folder: [Text](folder-name/)`/splunk-soc-analysis`
 
 ---
 
