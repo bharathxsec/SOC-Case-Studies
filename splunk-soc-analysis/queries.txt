@@ -1,1 +1,116 @@
+# SPL Queries Used During Analysis
+
+These are the main queries I used while investigating DNS and HTTP logs in Splunk. Each query helped answer a specific question during the analysis.
+
+---
+
+## 1. DNS Analysis
+
+### Find which IP is most active
+
+I started by checking which IP is generating the most DNS traffic.
+
+```
+| stats count by src_ip
+| sort -count
+```
+
+---
+
+### Check NXDOMAIN (failed DNS requests)
+
+To identify suspicious behavior, I filtered DNS failures.
+
+```
+| search response="NXDOMAIN"
+| stats count by src_ip
+| sort -count
+```
+
+---
+
+### Identify frequently queried domains
+
+This helped in spotting repeated or random domains.
+
+```
+| stats count by domain
+| sort -count
+```
+
+---
+
+## 2. SQL Injection Detection
+
+### Detect SQL injection patterns in URLs
+
+I searched for common SQL injection patterns in HTTP requests.
+
+```
+| where like(uri,"%OR%1=1%")
+```
+
+---
+
+### Find which IP is performing the attack
+
+After detecting the pattern, I grouped results by IP.
+
+```
+| where like(uri,"%OR%1=1%")
+| stats count by src_ip
+| sort -count
+```
+
+---
+
+### View most accessed URLs
+
+This helps in identifying targeted endpoints.
+
+```
+| stats count by uri
+| sort -count
+```
+
+---
+
+## 3. File Upload Detection
+
+### Detect file upload activity
+
+I filtered POST requests to upload endpoints.
+
+```
+| search uri="/upload.php" method="POST"
+| stats count by src_ip
+```
+
+---
+
+## 4. Webshell Detection
+
+### Detect access to suspicious files
+
+I checked for repeated access to uploaded files.
+
+```
+| search uri="/uploads/shell.php"
+| stats count by src_ip
+```
+
+---
+
+## 5. Correlation (Attack Chain)
+
+### Combine activity to understand behavior
+
+This helped in linking multiple actions (attack → upload → execution) from the same IP.
+
+```
+| stats count by src_ip, uri, method
+| sort -count
+```
+
+---
 
