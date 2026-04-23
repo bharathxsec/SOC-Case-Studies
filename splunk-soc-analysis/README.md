@@ -1,4 +1,3 @@
-
 # SOC Log Analysis using Splunk
 
 ## Overview
