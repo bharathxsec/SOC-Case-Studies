@@ -112,7 +112,9 @@ Critical
 
 ![Upload Activity](Screenshots/upload.png)
 
+
 ![Webshell Execution](Screenshots/webshell.png)
+
 ---
 
 ## Sample SPL Queries
