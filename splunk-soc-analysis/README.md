@@ -130,3 +130,9 @@ Webshell Detection:
 * SIEM log analysis
 * Detection of SQL injection, webshell, and DNS anomalies
 * Incident investigation and reporting
+____
+Screenshots:
+![DNS](dns.png)
+![SQLi](sqli.png)
+![Upload](upload.png)
+![Webshell](webshell.png)
