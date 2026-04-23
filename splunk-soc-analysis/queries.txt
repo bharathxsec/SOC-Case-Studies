@@ -1,87 +1,60 @@
-# 🔴 SPL Queries Used for Analysis
+SPL Queries Used for Analysis
 
----
+--------------------------------------------------
 
-## 🟢 1. DNS Analysis
+1. DNS Analysis
 
-### Find top DNS activity
-
-```
+Find top DNS activity
 | stats count by src_ip
 | sort -count
-```
 
-### Find NXDOMAIN responses
-
-```
+Find NXDOMAIN responses
 | search response="NXDOMAIN"
 | stats count by src_ip
 | sort -count
-```
 
-### Find repeated domains
-
-```
+Find repeated domains
 | stats count by domain
 | sort -count
-```
 
----
+--------------------------------------------------
 
-## 🟢 2. SQL Injection Detection
+2. SQL Injection Detection
 
-### Detect SQL injection patterns
-
-```
+Detect SQL injection patterns
 | where like(uri,"%OR%1=1%")
-```
 
-### Identify attacker IP
-
-```
+Identify attacker IP
 | where like(uri,"%OR%1=1%")
 | stats count by src_ip
 | sort -count
-```
 
-### View suspicious URLs
-
-```
+View suspicious URLs
 | stats count by uri
 | sort -count
-```
 
----
+--------------------------------------------------
 
-## 🟢 3. File Upload Detection
+3. File Upload Detection
 
-### Detect upload activity
-
-```
+Detect upload activity
 | search uri="/upload.php" method="POST"
 | stats count by src_ip
-```
 
----
+--------------------------------------------------
 
-## 🟢 4. Webshell Detection
+4. Webshell Detection
 
-### Detect webshell access
-
-```
+Detect webshell access
 | search uri="/uploads/shell.php"
 | stats count by src_ip
-```
 
----
+--------------------------------------------------
 
-## 🟢 5. Correlation (Attack Chain)
+5. Correlation (Attack Chain)
 
-### Combine activity
-
-```
+Combine activity across logs
 | stats count by src_ip, uri, method
 | sort -count
-```
 
----
+--------------------------------------------------
