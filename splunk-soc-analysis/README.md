@@ -42,7 +42,9 @@ High
 * Isolate affected host
 * Block suspicious domains
 * Perform endpoint scan
+### Screenshot
 
+![DNS Analysis](screenshots/dns.png)
 ---
 
 ## Scenario 2 — SQL Injection Detection
@@ -72,7 +74,7 @@ High
 * Block attacker IP
 * Enable WAF protection
 * Review login activity
-
+![SQLi](screenshots/sqli.png)
 ---
 
 ## Scenario 3 — Webshell Detection (Post-Exploitation)
@@ -116,6 +118,7 @@ SQL Injection Detection:
 Webshell Detection:
 | search uri="/uploads/shell.php"
 
+![Webshell](webshell.png)
 ---
 
 ## Tools Used
@@ -135,4 +138,4 @@ Screenshots:
 ![DNS](dns.png)
 ![SQLi](sqli.png)
 ![Upload](upload.png)
-![Webshell](webshell.png)
+
