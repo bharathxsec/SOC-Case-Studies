@@ -32,7 +32,10 @@ Analysis of DNS logs showed one internal IP generating a high number of failed q
 ### Analysis
 
 Repeated queries to random domains along with high NXDOMAIN responses indicate possible DGA behavior or malware communication.
-
+This was identified using SPL queries such as:
+| search response="NXDOMAIN"
+| stats count by src_ip, domain
+| sort -count
 ### Severity
 
 High
@@ -65,7 +68,9 @@ HTTP log analysis revealed repeated login requests containing SQL injection payl
 ### Analysis
 
 Successful responses to SQL injection payloads suggest possible authentication bypass.
-
+This was further analyzed using SPL queries such as:
+| where like(uri,"%admin%")
+| stats count by src_ip, uri
 ### Severity
 
 High
