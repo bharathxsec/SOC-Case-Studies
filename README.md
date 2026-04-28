@@ -17,10 +17,11 @@ This repository contains my hands-on SOC practice using Splunk and log analysis.
 
 ---
 
-### 🔹 Windows Log Analysis 🚧 (Planned)
+### 🔹 Windows Log Analysis 
 
 * Event ID 4624 / 4625 analysis
-____________
+
+ 
 ## Skills
 
 * Splunk (SPL queries)
