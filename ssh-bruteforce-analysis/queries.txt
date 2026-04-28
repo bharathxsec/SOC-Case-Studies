@@ -1,1 +1,20 @@
+1. Overview of login attempts (failed vs success)
+| stats count by src_ip, action
 
+2. Identify attacker IP (high failed attempts)
+| stats count by src_ip, action
+| sort -count
+
+3. Focus on attacker IP
+| search src_ip="192.168.50.5"
+| stats count by user, action
+
+4. Check target user
+| stats count by user, action
+
+5. Verify brute-force pattern (failed → success)
+| stats count by src_ip, action
+| where action="failed" OR action="success"
+
+6. View raw events (pattern verification)
+| table src_ip user action
