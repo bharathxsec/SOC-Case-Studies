@@ -48,5 +48,4 @@ High
 
 ## Queries
 
-See `queries.txt`
-
+See [queries.txt](./queries.txt)
