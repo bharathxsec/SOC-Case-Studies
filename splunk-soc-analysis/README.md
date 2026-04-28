@@ -122,18 +122,9 @@ Critical
 
 ---
 
-## Sample SPL Queries
+## Queries
 
-DNS Analysis:
-| stats count by src_ip, response
-
-SQL Injection Detection:
-| where like(uri,"%OR%1=1%")
-
-Webshell Detection:
-| search uri="/uploads/shell.php"
-
-
+See [queries.txt](./queries.txt)
 
 ## Tools Used
 
