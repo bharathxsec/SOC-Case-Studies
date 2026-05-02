@@ -1,1 +1,24 @@
+1. Overview of login activity (failed vs success)
+| stats count by src_ip, EventCode
 
+2. Identify suspicious IPs (high failed attempts)
+| stats count by src_ip, EventCode
+| sort -count
+
+3. Focus on compromised IP
+| search src_ip="192.168.200.10"
+| stats count by EventCode
+
+4. Identify target users
+| stats count by src_ip, user, EventCode
+
+5. Check failed-only attacker
+| search src_ip="192.168.200.50"
+| stats count by EventCode
+
+6. Verify brute-force pattern (failed → success)
+| stats count by src_ip, EventCode
+| where EventCode=4625 OR EventCode=4624
+
+7. View raw events (for evidence)
+| table src_ip user EventCode
