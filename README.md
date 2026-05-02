@@ -17,7 +17,7 @@ This repository contains my hands-on SOC practice using Splunk and log analysis.
 
 ---
 
-### 🔹 Windows Log Analysis 
+### 🔹 [Windows Log Analysis](./windows-log-analysis)
 
 * Event ID 4624 / 4625 analysis
 
