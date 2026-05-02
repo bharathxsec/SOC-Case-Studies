@@ -78,7 +78,7 @@ High (due to successful authentication after repeated failures)
 
 ---
 
-### Screenshots
+### [Screenshots](./screenshots)
 
 ![Overview](./screenshots/win_overview.png)
 
