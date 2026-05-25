@@ -47,7 +47,7 @@ High
 * Perform endpoint scan
 ### Screenshot
 
-![DNS Analysis](Screenshots/dns.png)
+![DNS Analysis](screenshots/dns.png)
 
 ---
 
@@ -82,7 +82,7 @@ High
 * Review login activity
 ### Screenshot
 
-![SQL Injection](Screenshots/sqli.png)
+![SQL Injection](screenshots/sqli.png)
 
 ---
 
@@ -115,10 +115,10 @@ Critical
 * Investigate for persistence
 ### Screenshot
 
-![Upload Activity](Screenshots/upload.png)
+![Upload Activity](screenshots/upload.png)
 
 
-![Webshell Execution](Screenshots/webshell.png)
+![Webshell Execution](screenshots/webshell.png)
 
 ---
 
