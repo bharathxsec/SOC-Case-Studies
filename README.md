@@ -2,7 +2,7 @@
 This repository contains my hands-on SOC practice using Splunk and log analysis.
 ## 📁 Projects
 
-### 🔹 [Splunk SOC Analysis](./splunk-soc-analysis)
+### 🔹 [full-attack-chain-analysis](./full-attack-chain-analysis)
 
 * DNS anomaly detection
 * SQL Injection detection
