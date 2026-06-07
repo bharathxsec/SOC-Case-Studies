@@ -19,19 +19,19 @@ This project demonstrates a complete multi-stage attack investigation using Splu
 
 DNS Anomaly Detection
 
-↓
+        ↓
 
 SQL Injection Attempt
 
-↓
+        ↓
 
 Malicious File Upload
 
-↓
+        ↓
 
 Webshell Execution
 
-↓
+        ↓
 
 System Compromise
 
