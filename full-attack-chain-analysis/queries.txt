@@ -15,21 +15,21 @@ Find NXDOMAIN responses
 | stats count by src_ip
 | sort -count
 
-Find repeated domains
+Find suspicious domains
 
-| stats count by domain
+| stats count by domain,response
 | sort -count
 
 ====================================================================================================================================================================================================================
 
 2. SQL Injection Detection
 
-Identify suspicious login URLs
+Identify suspicious URLs
 
 | stats count by uri
 | sort -count
 
-Investigate SQL injection endpoint
+Investigate login endpoint
 
 | search uri="*login.php*"
 | stats count by uri
@@ -71,7 +71,7 @@ Identify source IP
 
 5. Attack Chain Correlation
 
-View attack flow
+View attack timeline
 
 | table src_ip domain response uri method status
 
@@ -80,7 +80,11 @@ Top attack activity
 | stats count by uri
 | sort -count
 
-Correlate activity
+Correlate attack activity
 
 | stats count by src_ip, uri, method
 | sort -count
+
+Full investigation view
+
+| table src_ip domain uri method status
