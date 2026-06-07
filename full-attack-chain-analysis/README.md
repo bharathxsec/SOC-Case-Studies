@@ -16,7 +16,7 @@ This project demonstrates the investigation of a multi-stage cyber attack using 
 
 ## Dataset
 
-The dataset used for this lab is available in `dataset.txt`.
+The dataset used for this lab is available in  ![dataset.txt]`dataset.txt`.
 
 ---
 
@@ -148,4 +148,4 @@ Successful execution of `shell.php` indicates confirmed post-exploitation activi
 
 ## Queries
 
-See `queries.txt`
+See ![queries.txt]`queries.txt`
