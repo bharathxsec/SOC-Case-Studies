@@ -1,0 +1,33 @@
+| makeresults count=450
+| streamstats count as n
+
+| eval src_ip="192.168.55.25"
+
+| eval domain=case(
+n<100,"suspiciousxyz123.top",
+true(),"google.com"
+)
+
+| eval response=case(
+domain="suspiciousxyz123.top","NXDOMAIN",
+true(),"NOERROR"
+)
+
+| eval uri=case(
+n>=100 AND n<180,"/login.php?user=admin' OR '1'='1",
+n>=180 AND n<260,"/upload.php",
+n>=260 AND n<340,"/uploads/shell.php",
+true(),"/home"
+)
+
+| eval method=case(
+uri="/upload.php","POST",
+true(),"GET"
+)
+
+| eval status=case(
+uri="/upload.php",200,
+uri="/uploads/shell.php",200,
+uri="/login.php?user=admin' OR '1'='1",200,
+true(),200
+)
