@@ -1,0 +1,77 @@
+# Scenario 1 – Port Scanning Detection
+
+## Port Scan Summary
+
+| stats count by src_ip,dest_ip,dest_port,action
+
+## Top Source IPs
+
+| stats count by src_ip
+| sort -count
+
+## Top Destination Ports
+
+| stats count by dest_port
+| sort -count
+
+## Allowed vs Denied
+
+| stats count by action
+
+---
+
+# Scenario 2 – Suspicious Outbound Traffic
+
+## Outbound Traffic Summary
+
+| stats count by src_ip,dest_ip,dest_port,action
+
+## Top Destination IPs
+
+| stats count by dest_ip
+| sort -count
+
+## Top Destination Ports
+
+| stats count by dest_port
+| sort -count
+
+## Allowed Connections
+
+| search action="ALLOW"
+| stats count by src_ip,dest_ip,dest_port
+
+---
+
+# Scenario 3 – RDP Access Analysis
+
+## RDP Activity Summary
+
+| stats count by src_ip,dest_ip,dest_port,action
+
+## RDP Connections
+
+| search dest_port=3389
+| stats count by src_ip,action
+
+## Allowed vs Denied RDP
+
+| search dest_port=3389
+| stats count by action
+
+---
+
+# General Firewall Investigation Queries
+
+## Source to Destination Mapping
+
+| table src_ip dest_ip dest_port action
+
+## Full Firewall Overview
+
+| table src_ip dest_ip dest_port action
+
+## Top Source IP + Port
+
+| stats count by src_ip dest_port
+| sort -count
