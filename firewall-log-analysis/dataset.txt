@@ -1,0 +1,77 @@
+# SCENARIO 1 – PORT SCANNING DETECTION
+
+| makeresults count=200
+| streamstats count as n
+
+| eval src_ip=case(
+n<120,"192.168.100.10",
+true(),"192.168.100.50"
+)
+
+| eval dest_ip="10.10.10.5"
+
+| eval dest_port=case(
+n<20,21,
+n<40,22,
+n<60,23,
+n<80,25,
+n<100,53,
+n<120,80,
+true(),443
+)
+
+| eval action=case(
+n<120,"DENY",
+true(),"ALLOW"
+)
+
+| table src_ip dest_ip dest_port action
+
+---
+
+# SCENARIO 2 – SUSPICIOUS OUTBOUND TRAFFIC
+
+| makeresults count=300
+| streamstats count as n
+
+| eval src_ip=case(
+n<180,"192.168.50.25",
+true(),"192.168.50.100"
+)
+
+| eval dest_ip=case(
+n<180,"45.88.120.15",
+true(),"142.250.183.78"
+)
+
+| eval dest_port=case(
+n<180,4444,
+true(),443
+)
+
+| eval action="ALLOW"
+
+| table src_ip dest_ip dest_port action
+
+---
+
+# SCENARIO 3 – RDP ACCESS ANALYSIS
+
+| makeresults count=250
+| streamstats count as n
+
+| eval src_ip=case(
+n<180,"192.168.200.50",
+true(),"192.168.200.80"
+)
+
+| eval dest_ip="10.10.20.15"
+
+| eval dest_port=3389
+
+| eval action=case(
+n<180,"ALLOW",
+true(),"DENY"
+)
+
+| table src_ip dest_ip dest_port action
