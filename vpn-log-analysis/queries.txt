@@ -10,12 +10,11 @@
 
 # Scenario 2 – Suspicious Country Login
 
-| stats count by username,country
-
 | stats count by country
 
-| table username src_ip country action
+| stats count by username,country,src_ip,action
 
+| table username src_ip country action
 ---
 
 # Scenario 3 – Impossible Travel Detection
