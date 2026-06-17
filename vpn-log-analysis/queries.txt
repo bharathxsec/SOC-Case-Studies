@@ -1,0 +1,39 @@
+# Scenario 1 – VPN Brute Force
+
+| stats count by username,src_ip,action
+
+| stats count by action
+
+| table username src_ip action
+
+---
+
+# Scenario 2 – Suspicious Country Login
+
+| stats count by username,country
+
+| stats count by country
+
+| table username src_ip country action
+
+---
+
+# Scenario 3 – Impossible Travel Detection
+
+| stats count by username,country
+
+| table username src_ip country login_time action
+
+| stats count by country
+
+---
+
+# General VPN Investigation Queries
+
+| stats count by username
+
+| stats count by src_ip
+
+| stats count by action
+
+| table username src_ip country action
