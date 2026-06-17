@@ -1,0 +1,66 @@
+# SCENARIO 1 – VPN BRUTE FORCE DETECTION
+
+| makeresults count=150
+| streamstats count as n
+
+| eval username="john"
+
+| eval src_ip="45.88.10.15"
+
+| eval action=case(
+n<120,"FAILURE",
+true(),"SUCCESS"
+)
+
+| table username src_ip action
+
+---
+
+# SCENARIO 2 – SUSPICIOUS COUNTRY LOGIN
+
+| makeresults count=120
+| streamstats count as n
+
+| eval username="john.doe"
+
+| eval src_ip=case(
+n<100,"103.25.50.10",
+true(),"185.220.101.50"
+)
+
+| eval country=case(
+n<100,"India",
+true(),"Russia"
+)
+
+| eval action="SUCCESS"
+
+| table username src_ip country action
+
+---
+
+# SCENARIO 3 – IMPOSSIBLE TRAVEL DETECTION
+
+| makeresults count=100
+| streamstats count as n
+
+| eval username="john.doe"
+
+| eval country=case(
+n<50,"India",
+true(),"United States"
+)
+
+| eval src_ip=case(
+n<50,"103.25.50.10",
+true(),"52.120.45.20"
+)
+
+| eval login_time=case(
+n<50,"2025-06-01 10:00:00",
+true(),"2025-06-01 10:15:00"
+)
+
+| eval action="SUCCESS"
+
+| table username src_ip country login_time action
