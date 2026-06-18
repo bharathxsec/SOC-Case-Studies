@@ -1,10 +1,6 @@
-# SOC-Case-Studies
+## 📁 Projects
 
-This repository contains my hands-on Security Operations Center (SOC) practice using Splunk SIEM. The projects focus on log analysis, attack detection, incident investigation, event correlation, and security reporting.
-
-## Projects
-
-### Full Attack Chain Analysis
+### 🔹 Full Attack Chain Analysis
 
 Performed a multi-stage attack investigation using Splunk.
 
@@ -23,11 +19,51 @@ Performed a multi-stage attack investigation using Splunk.
 * Incident Investigation
 * Security Reporting
 
-Project: [full-attack-chain-analysis](./full-attack-chain-analysis)
+📁 Project: [01.full-attack-chain-analysis](./01.full-attack-chain-analysis)
 
 ---
 
-### Firewall Log Analysis
+### 🔹 Windows Log Analysis
+
+Analyzed Windows Security Event Logs to investigate authentication activity.
+
+**Scenarios Covered**
+
+* Event ID 4624 Analysis
+* Event ID 4625 Analysis
+* Windows Brute Force Detection
+
+**Skills Demonstrated**
+
+* Windows Event Log Analysis
+* Authentication Monitoring
+* Security Investigation
+
+📁 Project: [02.windows-log-analysis](./02.windows-log-analysis)
+
+---
+
+### 🔹 SSH Brute Force Analysis
+
+Investigated Linux authentication logs to identify brute-force attacks.
+
+**Scenarios Covered**
+
+* Failed Login Detection
+* Successful Login Analysis
+* SSH Brute Force Investigation
+
+**Skills Demonstrated**
+
+* Linux Log Analysis
+* Authentication Investigation
+* Brute Force Detection
+
+📁 Project: [03.ssh-bruteforce-analysis](./03.ssh-bruteforce-analysis)
+
+---
+
+### 🔹 Firewall Log Analysis
 
 Analyzed firewall logs to identify suspicious network activity.
 
@@ -44,84 +80,42 @@ Analyzed firewall logs to identify suspicious network activity.
 * Reconnaissance Detection
 * Security Monitoring
 
-Project: [firewall-log-analysis](./firewall-log-analysis)
+📁 Project: [04.firewall-log-analysis](./04.firewall-log-analysis)
 
 ---
 
-### SSH Brute Force Analysis
+### 🔹 VPN Log Analysis
 
-Investigated Linux authentication logs to identify brute-force attacks.
+Analyzed VPN logs to identify suspicious authentication activity.
 
 **Scenarios Covered**
 
-* Failed Login Detection
-* Successful Login Analysis
-* SSH Brute Force Investigation
+* VPN Brute Force Detection
+* Suspicious Country Login
+* Impossible Travel Detection
 
 **Skills Demonstrated**
 
-* Linux Log Analysis
+* VPN Log Analysis
 * Authentication Investigation
-* Brute Force Detection
+* Geographic Login Analysis
 
-Project: [ssh-bruteforce-analysis](./ssh-bruteforce-analysis)
-
----
-
-### Windows Log Analysis
-
-Analyzed Windows Security Event Logs to investigate authentication activity.
-
-**Scenarios Covered**
-
-* Event ID 4624 Analysis
-* Event ID 4625 Analysis
-* Windows Brute Force Detection
-
-**Skills Demonstrated**
-
-* Windows Event Log Analysis
-* Authentication Monitoring
-* Security Investigation
-
-Project: [windows-log-analysis](./windows-log-analysis)
+📁 Project: [05.vpn-log-analysis](./05.vpn-log-analysis)
 
 ---
 
-## Tools Used
+### 🔹 Proxy Log Analysis 🚧 (Coming Next)
 
-* Splunk Enterprise
-* SPL (Search Processing Language)
+**Planned Topics**
 
----
+* Malware Download Detection
+* Blocked Malicious Website Investigation
+* Possible Data Exfiltration Analysis
 
-## Log Sources Analyzed
+**Skills To Be Demonstrated**
 
-* DNS Logs
-* HTTP Logs
-* Linux Authentication Logs
-* Windows Event Logs
-* Firewall Logs
+* Proxy Log Analysis
+* Web Traffic Investigation
+* Data Exfiltration Detection
 
----
-
-## Skills
-
-* SIEM Investigation
-* Log Analysis
-* Event Correlation
-* Threat Detection
-* Incident Investigation
-* Security Monitoring
-* Firewall Analysis
-* Authentication Analysis
-* SQL Injection Detection
-* Webshell Detection
-* Brute Force Detection
-* Incident Reporting
-
----
-
-## Learning Objective
-
-The goal of this repository is to document practical SOC investigations and develop hands-on experience in security monitoring, threat detection, incident analysis, and response workflows using Splunk.
+📁 Project: [06.proxy-log-analysis](./06.proxy-log-analysis)
