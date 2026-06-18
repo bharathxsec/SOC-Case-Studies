@@ -104,18 +104,21 @@ Analyzed VPN logs to identify suspicious authentication activity.
 
 ---
 
-### 🔹 Proxy Log Analysis 🚧 (Coming Next)
+### 🔹 Proxy Log Analysis
 
-**Planned Topics**
+Analyzed proxy logs to identify malicious downloads, blocked website access attempts, and potential data exfiltration activity.
+
+**Scenarios Covered**
 
 * Malware Download Detection
 * Blocked Malicious Website Investigation
 * Possible Data Exfiltration Analysis
 
-**Skills To Be Demonstrated**
+**Skills Demonstrated**
 
 * Proxy Log Analysis
 * Web Traffic Investigation
+* Malware Investigation
 * Data Exfiltration Detection
 
 📁 Project: [06.proxy-log-analysis](./06.proxy-log-analysis)
