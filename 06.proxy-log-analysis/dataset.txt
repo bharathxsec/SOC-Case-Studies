@@ -1,0 +1,126 @@
+# Scenario 1 - Malware Download Detection
+
+| makeresults count=250
+| streamstats count as n
+
+| eval user=case(
+n<120,"alex",
+n<180,"john",
+true(),"emma"
+)
+
+| eval src_ip=case(
+n<120,"192.168.10.25",
+n<180,"192.168.10.50",
+true(),"192.168.10.75"
+)
+
+| eval url=case(
+n<40,"https://google.com",
+n<80,"https://youtube.com",
+n<120,"http://free-software-download.com/payload.exe",
+n<180,"https://github.com",
+true(),"https://microsoft.com"
+)
+
+| eval category=case(
+like(url,"%payload.exe%"),"Malware",
+like(url,"%google%"),"Search",
+like(url,"%youtube%"),"Streaming",
+like(url,"%github%"),"Technology",
+true(),"Technology"
+)
+
+| eval action="ALLOW"
+
+| eval bytes=case(
+like(url,"%payload.exe%"),7340032,
+true(),25000
+)
+
+| table user src_ip url category action bytes
+
+---
+
+# Scenario 2 - Blocked Malicious Website Access
+
+| makeresults count=300
+| streamstats count as n
+
+| eval user=case(
+n<100,"michael",
+n<220,"sarah",
+true(),"daniel"
+)
+
+| eval src_ip=case(
+n<100,"192.168.20.10",
+n<220,"192.168.20.25",
+true(),"192.168.20.50"
+)
+
+| eval url=case(
+n<100,"https://google.com",
+n<160,"http://darkweb-access.net",
+n<220,"http://darkweb-access.net/login",
+true(),"https://github.com"
+)
+
+| eval category=case(
+like(url,"%darkweb%"),"Malicious",
+like(url,"%google%"),"Search",
+true(),"Technology"
+)
+
+| eval action=case(
+like(url,"%darkweb%"),"BLOCK",
+true(),"ALLOW"
+)
+
+| eval bytes=case(
+action="BLOCK",0,
+true(),30000
+)
+
+| table user src_ip url category action bytes
+
+---
+
+# Scenario 3 - Possible Data Exfiltration
+
+| makeresults count=350
+| streamstats count as n
+
+| eval user=case(
+n<220,"robert",
+n<280,"jessica",
+true(),"kevin"
+)
+
+| eval src_ip=case(
+n<220,"192.168.30.15",
+n<280,"192.168.30.40",
+true(),"192.168.30.60"
+)
+
+| eval url=case(
+n<220,"http://fileshare-upload.net/upload",
+n<280,"https://github.com",
+true(),"https://microsoft.com"
+)
+
+| eval category=case(
+like(url,"%fileshare%"),"File Sharing",
+like(url,"%github%"),"Technology",
+true(),"Technology"
+)
+
+| eval action="ALLOW"
+
+| eval bytes=case(
+like(url,"%fileshare%"),500000000,
+like(url,"%github%"),35000,
+true(),25000
+)
+
+| table user src_ip url category action bytes
