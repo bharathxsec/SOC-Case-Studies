@@ -1,0 +1,116 @@
+# Scenario 1 - Malware Download Detection
+
+# Top Users
+
+| stats count by user
+| sort -count
+
+# Top URLs
+
+| stats count by url
+| sort -count
+
+# Malware Traffic
+
+| search category="Malware"
+
+# Malware Access Count
+
+| search category="Malware"
+| stats count by user,url,src_ip,category,action
+
+# User Activity Summary
+
+| stats count by user src_ip
+
+---
+
+# Scenario 2 - Blocked Malicious Website Access
+
+# Blocked Traffic
+
+| search action="BLOCK"
+
+# Malicious Category Traffic
+
+| search category="Malicious"
+
+# Blocked URL Summary
+
+| search action="BLOCK"
+| stats count by user,url,src_ip,category,action
+
+# Top Malicious URLs
+
+| search category="Malicious"
+| stats count by url
+| sort -count
+
+# Action Distribution
+
+| stats count by action
+
+---
+
+# Scenario 3 - Possible Data Exfiltration
+
+# File Sharing Activity
+
+| search category="File Sharing"
+
+# Total Bytes Transferred
+
+| stats sum(bytes) as Total_Bytes by user src_ip url category action
+
+# Largest Transfers
+
+| stats sum(bytes) as Total_Bytes by user src_ip url category action
+| sort -Total_Bytes
+
+# User Data Transfer Summary
+
+| stats sum(bytes) as Total_Bytes by user src_ip
+
+# Top URLs by Data Volume
+
+| stats sum(bytes) as Total_Bytes by url
+| sort -Total_Bytes
+
+---
+
+# Generic Proxy Investigation Queries
+
+# Top Users
+
+| stats count by user
+| sort -count
+
+# Top URLs
+
+| stats count by url
+| sort -count
+
+# Category Summary
+
+| stats count by category
+
+# Action Summary
+
+| stats count by action
+
+# User Activity
+
+| stats count by user src_ip
+
+# URL Investigation
+
+| stats count by url category action
+
+# Traffic Volume Analysis
+
+| stats sum(bytes) as Total_Bytes by user src_ip url
+
+# Largest Data Transfers
+
+| stats sum(bytes) as Total_Bytes by user src_ip url
+| sort -Total_Bytes
