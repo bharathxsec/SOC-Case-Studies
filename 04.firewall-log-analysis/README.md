@@ -11,8 +11,6 @@ This project demonstrates firewall log analysis using Splunk. Multiple firewall 
 * Platform: Splunk Enterprise
 * Log Type: Firewall Logs
 * Purpose: SOC Investigation Practice
-* Analyst: Bharath
-
 ---
 
 # Scenario 1 – Port Scanning Detection
