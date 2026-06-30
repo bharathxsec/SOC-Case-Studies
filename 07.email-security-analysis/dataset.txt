@@ -1,0 +1,146 @@
+Email Security Analysis Dataset
+
+Background
+
+Organization Domain:
+company.com
+
+Legitimate Domains:
+• company.com
+• github.com
+• linkedin.com
+• zoom.us
+
+Attacker-Controlled Domains:
+• microsoft-support365.com
+• invoice-secure-payments.com
+
+Objective
+
+Investigate email logs to identify:
+
+• Phishing Emails
+• Legitimate Emails (False Positives)
+• Malicious Attachments
+• Social Engineering Attacks
+
+======================================================================
+SCENARIO 1 – PHISHING EMAIL DETECTION
+======================================================================
+
+| makeresults count=250
+| streamstats count as n
+
+| eval sender=case(
+n<=40,"newsletter@linkedin.com",
+n<=80,"updates@github.com",
+n<=140,"security-update@microsoft-support365.com",
+n<=200,"hr@company.com",
+true(),"support@zoom.us"
+)
+
+| eval recipient=case(
+n<=40,"employee@company.com",
+n<=80,"developer@company.com",
+n<=140,"finance@company.com",
+n<=200,"hr@company.com",
+true(),"employee@company.com"
+)
+
+| eval subject=case(
+n<=40,"Weekly LinkedIn Jobs",
+n<=80,"GitHub Security Updates",
+n<=140,"URGENT: Your Microsoft 365 Password Expires Today",
+n<=200,"Monthly HR Policy Update",
+true(),"Zoom Meeting Invitation"
+)
+
+| eval attachment=case(
+n<=40,"none",
+n<=80,"none",
+n<=140,"Password_Reset_Form.xlsm",
+n<=200,"policy.pdf",
+true(),"none"
+)
+
+| eval action="DELIVERED"
+
+| table sender recipient subject attachment action
+
+======================================================================
+SCENARIO 2 – LEGITIMATE EMAIL / FALSE POSITIVE
+======================================================================
+
+| makeresults count=250
+| streamstats count as n
+
+| eval sender=case(
+n<=60,"security@company.com",
+n<=120,"it-support@company.com",
+n<=180,"notifications@github.com",
+true(),"newsletter@linkedin.com"
+)
+
+| eval recipient=case(
+n<=60,"employee1@company.com",
+n<=120,"employee2@company.com",
+n<=180,"developer@company.com",
+true(),"employee3@company.com"
+)
+
+| eval subject=case(
+n<=60,"Password Reset Confirmation",
+n<=120,"Scheduled System Maintenance",
+n<=180,"GitHub Security Alert",
+true(),"Weekly Career Newsletter"
+)
+
+| eval attachment=case(
+n<=60,"none",
+n<=120,"maintenance_schedule.pdf",
+n<=180,"none",
+true(),"none"
+)
+
+| eval action="DELIVERED"
+
+| table sender recipient subject attachment action
+
+======================================================================
+SCENARIO 3 – MALICIOUS INVOICE PHISHING
+======================================================================
+
+| makeresults count=300
+| streamstats count as n
+
+| eval sender=case(
+n<=50,"notifications@github.com",
+n<=100,"newsletter@linkedin.com",
+n<=220,"billing@invoice-secure-payments.com",
+true(),"hr@company.com"
+)
+
+| eval recipient=case(
+n<=50,"developer@company.com",
+n<=100,"employee@company.com",
+n<=220,"finance@company.com",
+true(),"hr@company.com"
+)
+
+| eval subject=case(
+n<=50,"GitHub Security Alert",
+n<=100,"Weekly Career Newsletter",
+n<=220,"Invoice Overdue - Immediate Payment Required",
+true(),"HR Policy Update"
+)
+
+| eval attachment=case(
+n<=50,"none",
+n<=100,"none",
+n<=220,"Invoice_2025.xlsm",
+true(),"policy.pdf"
+)
+
+| eval action="DELIVERED"
+
+| table sender recipient subject attachment action

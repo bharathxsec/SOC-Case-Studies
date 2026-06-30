@@ -1,6 +1,6 @@
 ## 📁 Projects
 
-### 🔹 Full Attack Chain Analysis
+### 🔹 01. Full Attack Chain Analysis
 
 Performed a multi-stage attack investigation using Splunk.
 
@@ -23,7 +23,7 @@ Performed a multi-stage attack investigation using Splunk.
 
 ---
 
-### 🔹 Windows Log Analysis
+### 🔹 02. Windows Log Analysis
 
 Analyzed Windows Security Event Logs to investigate authentication activity.
 
@@ -43,7 +43,7 @@ Analyzed Windows Security Event Logs to investigate authentication activity.
 
 ---
 
-### 🔹 SSH Brute Force Analysis
+### 🔹 03. SSH Brute Force Analysis
 
 Investigated Linux authentication logs to identify brute-force attacks.
 
@@ -63,7 +63,7 @@ Investigated Linux authentication logs to identify brute-force attacks.
 
 ---
 
-### 🔹 Firewall Log Analysis
+### 🔹 04. Firewall Log Analysis
 
 Analyzed firewall logs to identify suspicious network activity.
 
@@ -84,7 +84,7 @@ Analyzed firewall logs to identify suspicious network activity.
 
 ---
 
-### 🔹 VPN Log Analysis
+### 🔹 05. VPN Log Analysis
 
 Analyzed VPN logs to identify suspicious authentication activity.
 
@@ -104,7 +104,7 @@ Analyzed VPN logs to identify suspicious authentication activity.
 
 ---
 
-### 🔹 Proxy Log Analysis
+### 🔹 06. Proxy Log Analysis
 
 Analyzed proxy logs to identify malicious downloads, blocked website access attempts, and potential data exfiltration activity.
 
@@ -122,3 +122,26 @@ Analyzed proxy logs to identify malicious downloads, blocked website access atte
 * Data Exfiltration Detection
 
 📁 Project: [06.proxy-log-analysis](./06.proxy-log-analysis)
+
+---
+
+### 🔹 07. Email Security Analysis
+
+Analyzed email security logs to identify phishing attacks, validate false positives, and investigate malicious attachments.
+
+**Scenarios Covered**
+
+* Phishing Email Detection
+* Legitimate Email / False Positive Investigation
+* Malicious Invoice Phishing
+
+**Skills Demonstrated**
+
+* Email Security Analysis
+* Phishing Detection
+* Attachment Investigation
+* False Positive Validation
+* Social Engineering Detection
+* Incident Investigation
+
+📁 Project: [07.email-security-analysis](./07.email-security-analysis)

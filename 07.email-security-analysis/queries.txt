@@ -1,0 +1,93 @@
+========================================================
+EMAIL SECURITY ANALYSIS USING SPLUNK
+========================================================
+
+========================================================
+SCENARIO 1 - PHISHING EMAIL DETECTION
+========================================================
+
+# Search for Macro-enabled Attachments
+
+| search attachment="*.xlsm"
+| table sender recipient subject attachment action
+
+--------------------------------------------------------
+
+# Count Phishing Emails
+
+| search attachment="*.xlsm"
+| stats count by sender recipient subject attachment action
+
+========================================================
+SCENARIO 2 - LEGITIMATE EMAIL / FALSE POSITIVE
+========================================================
+
+# Search Internal IT Email
+
+| search sender="it-support@company.com"
+| table sender recipient subject attachment action
+
+--------------------------------------------------------
+
+# Count Legitimate Emails
+
+| search sender="it-support@company.com"
+| stats count by sender recipient subject attachment action
+
+========================================================
+SCENARIO 3 - MALICIOUS INVOICE PHISHING
+========================================================
+
+# Search Malicious Invoice Sender
+
+| search sender="billing@invoice-secure-payments.com"
+| table sender recipient subject attachment action
+
+--------------------------------------------------------
+
+# Count Malicious Invoice Emails
+
+| search sender="billing@invoice-secure-payments.com"
+| stats count by sender recipient subject attachment action
+
+========================================================
+GENERAL EMAIL INVESTIGATION QUERIES
+========================================================
+
+# Top Senders
+
+| stats count by sender
+| sort -count
+
+--------------------------------------------------------
+
+# Top Recipients
+
+| stats count by recipient
+| sort -count
+
+--------------------------------------------------------
+
+# Email Subjects
+
+| stats count by subject
+| sort -count
+
+--------------------------------------------------------
+
+# Attachment Summary
+
+| stats count by attachment
+| sort -count
+
+--------------------------------------------------------
+
+# Delivery Status
+
+| stats count by action
+
+--------------------------------------------------------
+
+# Full Email Investigation
+
+| table sender recipient subject attachment action
