@@ -200,8 +200,8 @@ Incident Report
 
 ## Queries
 
-See **queries.txt**
+See [queries.txt](./queries.txt)
 
 ## Dataset
 
-See **dataset.txt**
+See [dataset.txt](./dataset.txt)
